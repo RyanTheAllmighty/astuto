@@ -34,6 +34,7 @@ export interface ISiteSettingsGeneralForm {
   showVoteCount: boolean;
   showVoteButtonInBoard: boolean;
   showPoweredBy: boolean;
+  newPostDiscordWebhookUrl: string;
 }
 
 interface Props {
@@ -59,6 +60,7 @@ interface Props {
     showVoteCount: boolean,
     showVoteButtonInBoard: boolean,
     showPoweredBy: boolean,
+    newPostDiscordWebhookUrl: string,
     authenticityToken: string
   ): Promise<any>;
 }
@@ -93,6 +95,7 @@ const GeneralSiteSettingsP = ({
       showVoteCount: originForm.showVoteCount,
       showVoteButtonInBoard: originForm.showVoteButtonInBoard,
       showPoweredBy: originForm.showPoweredBy,
+      newPostDiscordWebhookUrl: originForm.newPostDiscordWebhookUrl,
     },
   });
   
@@ -111,6 +114,7 @@ const GeneralSiteSettingsP = ({
       data.showVoteCount,
       data.showVoteButtonInBoard,
       data.showPoweredBy,
+      data.newPostDiscordWebhookUrl,
       authenticityToken
     ).then(res => {
       if (res?.status !== HttpStatus.OK) return;
@@ -346,6 +350,19 @@ const GeneralSiteSettingsP = ({
                 <input {...register('showPoweredBy')} type="checkbox" id="show_powered_by_checkbox" />
                 <label htmlFor="show_powered_by_checkbox">{ getLabel('tenant_setting', 'show_powered_by') }</label>
               </div>
+            </div>
+          </div>
+
+          <div id="webhooks" className="settingsGroup">
+            <br />
+            <h4>{ I18n.t('site_settings.general.subtitle_webhooks') }</h4>
+
+            <div className="formGroup">
+              <label htmlFor="new_post_discord_webhook_url">{ getLabel('tenant_setting', 'new_post_discord_webhook_url') }</label>
+              <input {...register('newPostDiscordWebhookUrl')} type="url" id="new_post_discord_webhook_url" className="formControl" />
+              <SmallMutedText>
+                { I18n.t('site_settings.general.new_post_discord_webhook_url_help') }
+              </SmallMutedText>
             </div>
           </div>
 

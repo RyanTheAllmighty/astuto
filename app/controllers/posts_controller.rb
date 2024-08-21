@@ -1,3 +1,5 @@
+include WebhookHelper
+
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:update, :destroy]
   before_action :authenticate_moderator, only: [:moderation]
@@ -59,6 +61,10 @@ class PostsController < ApplicationController
 
     if @post.save
       Follow.create(post_id: @post.id, user_id: current_user.id) unless is_anonymous
+
+      if Current.tenant.tenant_setting.new_post_discord_webhook_url.present?
+        WebhookHelper.send_discord_message_for_new_post(Current.tenant.tenant_setting.new_post_discord_webhook_url, @post, is_anonymous ? nil : current_user)
+      end
       
       render json: @post, status: :created
     else

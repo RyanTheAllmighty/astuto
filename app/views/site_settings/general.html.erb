@@ -18,6 +18,7 @@
             feedbackApprovalPolicy: @tenant_setting.feedback_approval_policy,
             showRoadmapInHeader: @tenant_setting.show_roadmap_in_header,
             collapseBoardsInHeader: @tenant_setting.collapse_boards_in_header,
+            newPostDiscordWebhookUrl: @tenant_setting.new_post_discord_webhook_url,
             locale: @tenant.locale
           },
           boards: @tenant.boards.order(order: :asc),

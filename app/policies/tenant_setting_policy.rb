@@ -11,6 +11,7 @@ class TenantSettingPolicy < ApplicationPolicy
         :show_powered_by,
         :show_roadmap_in_header,
         :collapse_boards_in_header,
+        :new_post_discord_webhook_url,
         :custom_css
       ]
     else

@@ -38,6 +38,7 @@ interface ITenantSetting {
   show_vote_button_in_board?: boolean;
   show_roadmap_in_header?: boolean;
   show_powered_by?: boolean;
+  new_post_discord_webhook_url?: string;
   collapse_boards_in_header?: TenantSettingCollapseBoardsInHeader;
   custom_css?: string;
 }

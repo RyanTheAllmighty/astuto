@@ -1,0 +1,49 @@
+# Build production image and push to Docker Hub
+
+name: Push to GitHub packages
+
+on:
+  push:
+    branches:
+      - 'feature/add-discord-webhook-on-post-submit'
+    tags:
+      - '**'
+
+jobs:
+  push-to-registry:
+    runs-on: ubuntu-22.04
+
+    permissions:
+      contents: read
+      packages: write
+      attestations: write
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Log into registry ghcr.io
+        uses: docker/login-action@v3.3.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract Docker metadata
+        id: meta
+        uses: docker/metadata-action@v5.5.1
+        with:
+          images: ghcr.io/${{ github.repository }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ./Dockerfile
+          target: prod
+          build-args: |
+            ENVIRONMENT=production
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}

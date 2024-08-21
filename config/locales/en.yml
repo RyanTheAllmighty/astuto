@@ -195,6 +195,8 @@ en:
       custom_domain_learn_more: 'Learn how to configure a custom domain'
       show_vote_count_help: 'If you enable this setting, users will be able to see the vote count of posts. This may incentivize users to vote on already popular posts, leading to a snowball effect.'
       show_vote_button_in_board_help: 'If you enable this setting, users will be able to vote posts from the board page. This may incentivize users to vote on more posts, leading to a higher number of votes but of lower significance.'
+      subtitle_webhooks: 'Webhooks'
+      new_post_discord_webhook_url_help: 'If you enable this setting, when new feedback is posted, the provided webhook will be called so you can notify a Discord channel of the new feedback.'
     boards:
       title: 'Boards'
       empty: 'There are no boards. Create one below!'

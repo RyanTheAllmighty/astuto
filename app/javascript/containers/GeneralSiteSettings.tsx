@@ -25,6 +25,7 @@ const mapDispatchToProps = (dispatch: any) => ({
     showVoteCount: boolean,
     showVoteButtonInBoard: boolean,
     showPoweredBy: boolean,
+    newPostDiscordWebhookUrl: string,
     authenticityToken: string
   ): Promise<any> {
     return dispatch(updateTenant({
@@ -40,6 +41,7 @@ const mapDispatchToProps = (dispatch: any) => ({
         show_vote_count: showVoteCount,
         show_vote_button_in_board: showVoteButtonInBoard,
         show_powered_by: showPoweredBy,
+        new_post_discord_webhook_url: newPostDiscordWebhookUrl,
       },
       locale,
       customDomain,
